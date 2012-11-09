@@ -20,9 +20,9 @@
 
 # installation
 default['redis']['install_type'] = "package"
-default['redis']['source']['sha'] = "ac420c9f01f5e1d4e977401936f8da81d2401e65c03de2e0ca11eba1cc71c874"
+default['redis']['source']['sha'] = "d67d8cc06e05cf4c6f5a10ff588941a10fcb8fb8d81f62524b9b1918d0530b85"
 default['redis']['source']['url'] = "http://redis.googlecode.com/files"
-default['redis']['source']['version'] = "2.4.9"
+default['redis']['source']['version'] = "2.6.4"
 default['redis']['src_dir'] = "/usr/src/redis"
 default['redis']['dst_dir'] = "/opt/redis"
 default['redis']['conf_dir'] = "/etc/redis"
