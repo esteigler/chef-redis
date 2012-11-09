@@ -46,12 +46,9 @@ default['redis']['config']['loglevel'] = "warning"
 default['redis']['config']['pidfile'] = "/var/run/redis.pid"
 default['redis']['config']['rdbcompression'] = "yes"
 default['redis']['config']['timeout'] = "300"
-default['redis']['config']['vm']['enabled'] = "no"
-default['redis']['config']['vm']['max_memory'] = "0"
-default['redis']['config']['vm']['max_threads'] = "4"
-default['redis']['config']['vm']['page_size'] = "32"
-default['redis']['config']['vm']['pages'] = "134217728"
-default['redis']['config']['vm']['vm_swap_file'] = "/var/lib/redis/redis.swap"
+default['redis']['config']['syslog_enabled'] = "no"
+default['redis']['config']['syslog_ident'] = "redis"
+default['redis']['config']['syslog_facility'] = "local0"
 
 ###
 ## the following configuration settings may only work with a recent redis release
