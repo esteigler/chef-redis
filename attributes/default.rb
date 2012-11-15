@@ -34,7 +34,7 @@ default['redis']['group'] = "redis"
 
 # configuration
 default['redis']['config']['appendonly'] = "no"
-default['redis']['config']['appendfsync'] = "everysec"
+default['redis']['config']['appendfsync'] = "no"
 default['redis']['config']['daemonize'] = "yes"
 default['redis']['config']['databases'] = "16"
 default['redis']['config']['dbfilename'] = "dump.rdb"
@@ -53,6 +53,10 @@ default['redis']['config']['syslog_facility'] = "local0"
 ###
 ## the following configuration settings may only work with a recent redis release
 ###
+default['redis']['config']['configure_maxmemory'] = true
+default['redis']['config']['maxmemory'] = "8mb"
+default['redis']['config']['maxmemory_policy'] = "allkeys-lru"
+
 default['redis']['config']['configure_slowlog'] = false
 default['redis']['config']['slowlog_log_slower_than'] = "10000"
 default['redis']['config']['slowlog_max_len'] = "1024"
