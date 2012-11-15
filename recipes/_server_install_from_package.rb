@@ -2,7 +2,7 @@
 # Cookbook Name:: redis
 # Recipe:: _server_install_from_package
 
-case node.platform
+case node['platform']
 when "debian", "ubuntu"
   pkg = "redis-server"
   # Install a repo that has more up to date packages
