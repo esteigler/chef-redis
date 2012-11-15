@@ -26,3 +26,5 @@ end
 %w[ build-essential runit yum ].each do |cookbook|
   depends cookbook
 end
+
+suggests "yum"
