@@ -3,9 +3,19 @@
 # Simple Redis init.d script conceived to work on Linux systems
 # as it does use the /proc filesystem.
 
-REDISPORT=<%= node['redis']['config']['listen_port'] %>
-EXEC=<%= node['redis']['dst_dir'] %>/bin/redis-server
-CLIEXEC=<%= node['redis']['dst_dir'] %>/bin/redis-cli
+REDISPORT=<%= @port %>
+<% if node.redis.install_type == "package" %>
+<% case node.platform_family %>
+<% when "rhel", "fedora" %>
+EXEC=/usr/sbin/redis-server
+<% when "debian" %>
+EXEC=/usr/bin/redis-server
+<% end %>
+CLIEXEC=/usr/bin/redis-cli
+<% else %>
+EXEC=<%= node.redis.dst_dir %>/bin/redis-server
+CLIEXEC=<%= node.redis.dst_dir %>/bin/redis-cli
+<% end %>
 
 PIDFILE=<%= node['redis']['config']['pidfile'] %>
 CONF="<%= node['redis']['conf_dir'] %>/redis.conf"
@@ -16,8 +26,11 @@ case "$1" in
         then
                 echo "$PIDFILE exists, process is already running or crashed"
         else
+                <% if @logfile.downcase != "stdout" %>
+                chown -R <%= @user %>:<%= @user %> <%= @logfile %>
+                <% end %>
                 echo "Starting Redis server..."
-                $EXEC $CONF
+                sudo -u <%= @user %> $EXEC $CONF
         fi
         ;;
     stop)
